@@ -126,7 +126,7 @@ namespace MudBlazor
         /// If true, instead of positioning the menu at the left upper corner, position at the exact cursor location.
         /// This makes sense for larger activators
         /// </summary>
-        [Obsolete("Use PositionAtCursor instead.",true)]
+        [Obsolete("Use PositionAtCursor instead.", true)]
         [Parameter]
         public bool PositionAtCurser
         {
@@ -249,6 +249,17 @@ namespace MudBlazor
 
         public string PopoverStyle { get; set; }
 
+        /// <summary>
+        /// Gets a value indicating whether the menu is currently open or not.
+        /// </summary>
+        public bool IsOpen
+        {
+            get { return _isOpen; }
+        }
+
+        /// <summary>
+        /// Closes the menu.
+        /// </summary>
         public void CloseMenu()
         {
             _isOpen = false;
@@ -257,6 +268,12 @@ namespace MudBlazor
             StateHasChanged();
         }
 
+        /// <summary>
+        /// Opens the menu.
+        /// </summary>
+        /// <param name="args">The arguments of the calling mouse event. If
+        /// <see cref="PositionAtCursor"/> is true, the menu will be positioned using the
+        /// coordinates in this parameter.</param>
         public void OpenMenu(EventArgs args)
         {
             if (Disabled)
@@ -314,7 +331,7 @@ namespace MudBlazor
             ToggleMenu(args);
         }
 
-        public void MouseEnter(EventArgs args)
+        public void MouseEnter(MouseEventArgs args)
         {
             _isMouseOver = true;
 
